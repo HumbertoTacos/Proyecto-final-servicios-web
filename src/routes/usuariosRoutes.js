@@ -1,0 +1,11 @@
+import { Router } from "express";
+import { getAll, create, update, remove , login} from "../controllers/usuariosController.js";
+import {esAdmin } from "../Middleware/admin.js";
+import { verificarToken } from "../Middleware/auth.js";
+const router = Router();
+router.get("/", verificarToken, esAdmin, getAll);
+router.post("/", create);
+router.post("/login", login);
+router.put("/:id", update);
+router.delete("/:id", remove);
+export default router;
